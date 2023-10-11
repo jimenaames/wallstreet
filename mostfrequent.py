@@ -1,4 +1,5 @@
 import pandas as pd
+import biasdetector
 from collections import Counter
 import nltk
 from nltk.corpus import stopwords
@@ -11,29 +12,13 @@ class Keyword:
     def keyword_list(self):
         keyword_list = replaceSpecial(self.text_col)
         self.keyword_list = CountFrequencyinWords(keyword_list)[0]
-        self.keyword_list_short = self.keyword_list[0:7]
     def keyword_dict(self):
         keyword_dict = replaceSpecial(self.text_col)
         self.keyword_dict = CountFrequencyinWords(keyword_dict)[1]
 
-def replaceSpecial(text_col):
-    list = str([word for word in text_col if not word in stopwords])
+def replaceSpecial(list):
+    list = str(list)
     list = list.lower()
-    list=list.replace(",","")
-    list=list.replace("the","")
-    list=list.replace("'","")
-    list=list.replace(":","")
-    list=list.replace("•","")
-    list=list.replace("_","")
-    list=list.replace("x000d","")
-    list=list.replace(r"\n"," ")
-    list=list.replace("§","")
-    list = list.replace("●","")
-    list=list.replace("mangroves","")
-    list=list.replace("corals","")
-    list=list.replace("reefs","")
-    list=list.replace("and","")
-    list=list.replace("of","")
     list = list.split()
     return list
 
@@ -50,3 +35,8 @@ def CountFrequencyinWords(my_list):
         desc_dict.append(r)
     return desc_dict, freq_sorted_keys
 
+biasdetector = Keyword(biasdetector.dataset['Text'])
+biasdetector.keyword_list()
+
+biasdetector_keyword_list = str([word for word in biasdetector.keyword_list if not word in stopwords])
+print(biasdetector_keyword_list)
