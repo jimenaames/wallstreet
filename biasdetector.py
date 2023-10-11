@@ -40,5 +40,5 @@ new_dataset['Title']= title_col
 new_dataset['author']= author_col
 
 dataset = new_dataset #I've now filtered out all the articles that don't include finance keywords
-dataset.to_excel()
+dataset.to_excel('fake_edited.xlsx')
 #END data cleaning fake.csv file. All done!
