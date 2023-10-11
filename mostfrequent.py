@@ -40,3 +40,5 @@ biasdetector.keyword_list()
 
 biasdetector_keyword_list = str([word for word in biasdetector.keyword_list if not word in stopwords])
 print(biasdetector_keyword_list)
+
+#the work needed here is brainstorming how to get the bias words from the non-bias words such as names, numbers. Proper nouns are the most likely to be bias as well as descriptive words (adjectives, nouns, verbs).
